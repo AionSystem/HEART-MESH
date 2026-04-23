@@ -2,7 +2,7 @@
 
 **「心网」— The Mesh That Connects**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXXXX)
+[![DOI](https://zenodo.org/badge/1219305625.svg)](https://doi.org/10.5281/zenodo.19712633)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8057--5115-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8057-5115)
 [![License](https://img.shields.io/badge/License-Sovereign%20IP%20Reserved-8B0000?logoColor=white)](./LICENSE)
 [![FORGE](https://img.shields.io/badge/FORGE-v1.0%20%7C%20CERTIFIED%20VALID-8B0000?logoColor=white)](https://github.com/AionSystem/FORGE)
