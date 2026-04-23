@@ -1,6 +1,6 @@
 # HEART-MESH v3.0 — Sovereign Distributed AI Partnership & Compatibility Infrastructure
 
-**「心网」— The Mesh That Connects**
+**The Mesh That Connects**
 
 [![DOI](https://zenodo.org/badge/1219305625.svg)](https://doi.org/10.5281/zenodo.19712633)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8057--5115-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8057-5115)
