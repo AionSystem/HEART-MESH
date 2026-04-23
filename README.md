@@ -713,7 +713,7 @@ All frameworks, engines, and architectural components are original intellectual 
 | Registration | Identifier |
 |--------------|------------|
 | ORCID | [0009-0005-8057-5115](https://orcid.org/0009-0005-8057-5115) |
-| Zenodo DOI (this repository) | [10.5281/zenodo.XXXXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXXXX) |
+| Zenodo DOI (this repository) | [10.5281/zenodo.19712633](https://doi.org/10.5281/zenodo.19712633) |
 | MYCELIUM v2.0 | [10.5281/zenodo.19688042](https://doi.org/10.5281/zenodo.19688042) |
 | AION Constitutional Stack | [10.5281/zenodo.18941392](https://doi.org/10.5281/zenodo.18941392) |
 | CERTUS Engine v2.5.3 | [10.5281/zenodo.19373724](https://doi.org/10.5281/zenodo.19373724) |
@@ -744,7 +744,7 @@ This repository constitutes registered intellectual property of Sheldon K. Salmo
 
 | Field | Value |
 |-------|-------|
-| DOI Registered | 10.5281/zenodo.XXXXXXXXX |
+| DOI Registered | 10.5281/zenodo.19712633 |
 | ORCID | 0009-0005-8057-5115 |
 | Ownership | Complete — unencumbered |
 | Institutional Claims | None |
@@ -786,7 +786,7 @@ The postal analogy carried forward from MYCELIUM: Every pattern verified. Every 
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-HEART-MESH v3.0 — 「心网」— The Mesh That Connects
+HEART-MESH v3.0 — The Mesh That Connects
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 FORGE v1.0 INFORMED  |  MYCELIUM v2.0 BACKBONE  |  FSVE v4.0 SCORING
 STP v1.0 SEALED  |  RDS POPULATION METRIC  |  ORCID: 0009-0005-8057-5115
