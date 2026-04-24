@@ -1,807 +1,1225 @@
-# HEART-MESH v3.0 — Sovereign Distributed AI Partnership & Compatibility Infrastructure
+# HEART-MESH v3.1 — Full Architecture Specification
 
-**The Mesh That Connects**
+**「心网」— The Mesh That Connects**
 
-[![DOI](https://zenodo.org/badge/1219305625.svg)](https://doi.org/10.5281/zenodo.19712633)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0005--8057--5115-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0005-8057-5115)
-[![License](https://img.shields.io/badge/License-Sovereign%20IP%20Reserved-8B0000?logoColor=white)](./LICENSE)
-[![FORGE](https://img.shields.io/badge/FORGE-v1.0%20%7C%20CERTIFIED%20VALID-8B0000?logoColor=white)](https://github.com/AionSystem/FORGE)
-[![FSVE](https://img.shields.io/badge/FSVE-v4.0%20%7C%20M--STRONG%20%7C%20EV%200.813-4B0082?logoColor=white)](https://github.com/AionSystem/FSVE)
-[![STP](https://img.shields.io/badge/STP-v1.0%20%7C%20SHA--256%20BOUND-00457C?logoColor=white)](https://github.com/AionSystem/STP)
-[![HEART-MESH](https://img.shields.io/badge/HEART--MESH-v3.0%20%7C%20MESH%20ARCHITECTURE-8B1A1A?logoColor=white)](https://github.com/AionSystem)
-[![MYCELIUM](https://img.shields.io/badge/MYCELIUM-v2.0%20%7C%20MESH%20BACKBONE-2D4A2D?logoColor=white)](https://github.com/AionSystem)
-[![Status](https://img.shields.io/badge/Status-CONCEPT%20COMPLETE%20%7C%20FORGE%20INFORMED-2E7D32?logoColor=white)](https://github.com/AionSystem)
-[![Version](https://img.shields.io/badge/Version-3.0%20%7C%20April%202026-34495E?logoColor=white)](https://github.com/AionSystem)
-[![TRL](https://img.shields.io/badge/TRL-3%20%7C%20Personality%20AI%20Node-FF6F00?logoColor=white)](https://github.com/AionSystem)
-[![TRL](https://img.shields.io/badge/TRL-5%20%7C%20Match%20Router%20%7C%20RDS-1565C0?logoColor=white)](https://github.com/AionSystem)
+[![HEART-MESH](https://img.shields.io/badge/HEART--MESH-v3.1%20%7C%20FULL%20SPEC-8B1A1A?logoColor=white)](https://github.com/AionSystem)
+[![DSAP](https://img.shields.io/badge/DSAP-v1.1%20%7C%20AUDIT%20COMPLETE-2C3E50?logoColor=white)](https://github.com/AionSystem)
+[![FORGE](https://img.shields.io/badge/FORGE-v1.0%20%7C%20INFORMED-8B0000?logoColor=white)](https://github.com/AionSystem/FORGE)
+[![FSVE](https://img.shields.io/badge/FSVE-v4.0%20%7C%20M--STRONG-4B0082?logoColor=white)](https://github.com/AionSystem/FSVE)
+[![STP](https://img.shields.io/badge/STP-v1.0%20%7C%20SHA--256-00457C?logoColor=white)](https://github.com/AionSystem/STP)
+[![Status](https://img.shields.io/badge/Status-SPEC%20COMPLETE%20%7C%20BUILD%20READY-2E7D32?logoColor=white)](https://github.com/AionSystem)
+[![Authors](https://img.shields.io/badge/Authors-Sheldon%20K.%20Salmon%20%26%20ALBEDO-34495E?logoColor=white)](https://orcid.org/0009-0005-8057-5115)
+
+**Classification:** Social Infrastructure — Full Architecture Specification  
+**Version:** 3.1.0  
+**Supersedes:** HEART-MESH v3.0 (April 23, 2026)  
+**Date:** April 23, 2026  
+**Architect:** Sheldon K. Salmon  
+**Instrument:** ALBEDO  
+**DSAP Audit:** v1.1 — PARTIAL certification — all propagating warnings resolved in this spec
 
 ---
 
 ## 📋 Table of Contents
 
-- [Executive Summary](#-executive-summary)
-- [The Fusion: Why MYCELIUM + HEART-MESH](#-the-fusion-why-mycelium--heart-mesh)
-- [Problem Statement](#-problem-statement)
-- [Constitutional Principle](#-constitutional-principle)
-- [Architecture](#-architecture)
-  - [The Mesh Node Model](#the-mesh-node-model)
-  - [Layer 1: Personality AI Node](#layer-1-personality-ai-node-mvp--phase-1)
-  - [Layer 2: Pattern File](#layer-2-pattern-file-json--user-owned)
-  - [Layer 3: HEART-MESH Match Protocol](#layer-3-heart-mesh-match-protocol-phase-3)
-  - [Optional: Mirror Protocol](#optional-mirror-protocol-phase-3)
-- [Pattern Extraction Mechanism](#-pattern-extraction-mechanism)
-- [Matching Algorithm](#-matching-algorithm)
-- [MATCH HOLD Protocol](#-match-hold-protocol)
-- [Relational Debt Score (RDS)](#-relational-debt-score-rds)
-- [Ground Truth for Compatibility Outcomes](#-ground-truth-for-compatibility-outcomes)
-- [Constitutional Bounds](#-constitutional-bounds)
-- [Cascading Failure Analysis](#-cascading-failure-analysis)
-- [FORGE v1.0 Audit Record](#-forge-v10-audit-record)
-- [Technical Specifications](#-technical-specifications)
-- [MVP Scope](#-mvp-scope)
-- [Business Model & NICE Alignment](#-business-model--nice-alignment)
+- [Constitutional Declarations](#-constitutional-declarations)
+- [What Changed: v3.0 → v3.1](#-what-changed-v30--v31)
+- [System Overview](#-system-overview)
+- [FRONTEND LAYER — User Experience](#-frontend-layer--user-experience)
+  - [F1 — Companion App](#f1--companion-app)
+  - [F2 — Pattern File Viewer](#f2--pattern-file-viewer)
+  - [F3 — Match Portal](#f3--match-portal)
+  - [F4 — AI Floppy Studio](#f4--ai-floppy-studio)
+  - [F5 — Mirror Protocol UI](#f5--mirror-protocol-ui)
+  - [F6 — Stage Snapshot Timeline](#f6--stage-snapshot-timeline)
+- [MIDDLEWARE LAYER — Engine](#-middleware-layer--engine)
+  - [M1 — Personality AI Engine](#m1--personality-ai-engine)
+  - [M2 — Pattern Extraction Pipeline](#m2--pattern-extraction-pipeline)
+  - [M3 — Stage Delta Engine](#m3--stage-delta-engine)
+  - [M4 — Probabilistic Band Calculator](#m4--probabilistic-band-calculator)
+  - [M5 — Cultural Parameterization Layer](#m5--cultural-parameterization-layer)
+  - [M6 — Match Router](#m6--match-router)
+  - [M7 — Mirror Protocol Engine](#m7--mirror-protocol-engine)
+  - [M8 — Connection Nudge Protocol](#m8--connection-nudge-protocol)
+- [BACKEND LAYER — Infrastructure](#-backend-layer--infrastructure)
+  - [B1 — STP Sealing Service](#b1--stp-sealing-service)
+  - [B2 — Relational Debt Score Engine](#b2--relational-debt-score-engine)
+  - [B3 — Cultural Database](#b3--cultural-database)
+  - [B4 — Training Data Pipeline](#b4--training-data-pipeline)
+  - [B5 — Matching Network](#b5--matching-network)
+  - [B6 — Offline Sync Protocol](#b6--offline-sync-protocol)
+- [Data Architecture](#-data-architecture)
+  - [Pattern File v3.1 Schema](#pattern-file-v31-schema)
+  - [Stage Delta Record Schema](#stage-delta-record-schema)
+  - [Probability Band Output Schema](#probability-band-output-schema)
+  - [Cultural Parameter Block Schema](#cultural-parameter-block-schema)
+- [API Surface](#-api-surface)
+- [Security & Sovereignty Model](#-security--sovereignty-model)
+- [Free Data Strategy](#-free-data-strategy)
+- [The Interaction Pattern Gap — Declared](#-the-interaction-pattern-gap--declared)
+- [MVP Build Sequence](#-mvp-build-sequence)
 - [Implementation Roadmap](#-implementation-roadmap)
-- [ECF-Tagged Claims Register](#-ecf-tagged-claims-register)
-- [Intellectual Property](#-intellectual-property)
-- [License](#-license)
-- [Acknowledgments](#-acknowledgments)
-- [Contact](#-contact)
 
 ---
 
-## 📋 Executive Summary
+## ⚖️ Constitutional Declarations
 
-**HEART-MESH v3.0** is a sovereign distributed AI partnership mesh — the first application of MYCELIUM's epistemic verification infrastructure to the global loneliness and demographic decline crisis. [R]
+These are not disclaimers. They are structural truths that govern every design decision in this specification.
 
-It is not a dating app. It is infrastructure gained.
+**Declaration 1 — Attachment Inevitability**
+You cannot shape what people attach to. The engine does not try. People will attach to their Companion AI regardless of design intent — this is not a failure state, it is human nature. The system acknowledges this honestly and builds safeguards that respect it rather than fight it. The Connection Nudge Protocol is not about stopping attachment. It is about ensuring the attachment does not displace all human connection.
 
-Each user's Personality AI operates as a **sovereign mesh node** — running locally, generating a cryptographically-sealed Pattern File, and earning trust status (RED/YELLOW/GREEN) through calibrated pattern confidence. When two GREEN nodes are ready, their AIs negotiate compatibility across 50+ dimensions using FSVE scoring. Every match event is sealed via the Sovereign Trace Protocol (STP). Population-level relational health is measured through the Relational Debt Score (RDS).
+**Declaration 2 — Probabilistic Honesty**
+The engine does not predict compatibility. It produces a probability band over relational outcomes given a pattern overlap profile. A probability band is not a guarantee. It is honest signal — more useful than a score, more truthful than a binary gate.
 
-The constitutional principle holds at every layer: **AI advises. Human decides. No one is gated from connection.**
+**Declaration 3 — Behavioral Sample, Not Identity**
+Every Pattern File is a time-stamped behavioral sample. It represents observed patterns during a bounded window of conversation. It is not who you are. It is what the AI observed about how you communicated during a specific period. The staged architecture makes this explicit: you are not your Stage 1 file. You are the delta between your files.
 
-> **FORGE v1.0 INFORMED:** Architecture designed through FORGE adversarial lens methodology. HEART-MESH v2.0 achieved estimated EV 0.72–0.78 after resolving all Critical and High findings. v3.0 integrates MYCELIUM mesh architecture as foundational backbone.
+**Declaration 4 — Interaction Gap**
+The engine assesses individuals and computes pattern overlap. It cannot observe the interaction between two people before they meet. The signal at the interaction layer — what Gottman identified as the real predictive unit — is not available pre-match. This is a structural ceiling, not a design failure. The engine reduces the probability of bad matches. It cannot guarantee good ones.
 
----
+**Declaration 5 — AI Advises. Human Decides.**
+At every stage. No exceptions. The engine proposes. The user chooses. This is not a UX principle. It is a constitutional constraint on the system's authority.
 
-## 🔀 The Fusion: Why MYCELIUM + HEART-MESH
-
-MYCELIUM v2 proved that distributed epistemic verification works at scale. Its node trust model, FSVE scoring engine, STP sealing infrastructure, and MATCH HOLD safety architecture are directly applicable to the compatibility problem — with one key substitution:
-
-| MYCELIUM v2 | HEART-MESH v3.0 |
-|-------------|-----------------|
-| Institute research node | User Personality AI node |
-| AI output verification | Personality pattern verification |
-| Domain expert ground truth | Psychometric instrument ground truth |
-| FSVE epistemic certainty score | FSVE compatibility score (CDI) |
-| Epistemic Debt Score (EDS) | Relational Debt Score (RDS) |
-| MESH HOLD (no verified node) | MATCH HOLD (no compatible GREEN node) |
-| Work Router | Match Router |
-| STP-sealed verification events | STP-sealed match events |
-| NICE research network | NICE / government partnership network |
-
-The mesh backbone does not change. What flows through it does. [R]
+**Declaration 6 — Cultural Validity is Not Optional**
+A compatibility engine without cultural parameterization is only valid for whoever seeds it first. Cultural parameterization is Phase 1 infrastructure, not Phase 5 polish.
 
 ---
 
-## 🎯 Problem Statement
+## 🔄 What Changed: v3.0 → v3.1
 
-### The Global Loneliness Crisis by the Numbers
-
-| Country | Key Metric | Source |
-|---------|-----------|--------|
-| **China** | 200+ million unmarried adults. Marriage rate declined 40% from 2013 to 2022. "Leftover women" (sheng nu) stigma begins at age 27. | China National Bureau of Statistics, 2023 [D] |
-| **Japan** | 25% of men and 20% of women unmarried by age 50. Population declining since 2008. | Japanese Ministry of Health, Labor and Welfare, 2024 [D] |
-| **South Korea** | Fertility rate 0.72 — world's lowest. 40% of unmarried adults report no romantic relationship in past year. | Statistics Korea, 2024 [D] |
-| **United States** | 63% of men aged 18–29 report being single — highest rate ever recorded. Loneliness declared a public health epidemic by the Surgeon General, 2023. | Pew Research Center, 2023; U.S. Surgeon General Advisory, 2023 [D] |
-| **United Kingdom** | 25% of adults report feeling lonely "often" or "always." Government appointed a Minister for Loneliness in 2018. | UK Office for National Statistics, 2023 [D] |
-| **European Union** | 30% of households are single-person. Marriage rates declined 50% since 1970 across EU-27. | Eurostat, 2023 [D] |
-
-**Pattern:** The decline of partnership is not a single-country problem. It is a global phenomenon with common structural drivers: urbanization, economic precarity, social media fragmentation, declining third spaces, and the collapse of traditional matchmaking institutions. [R]
-
-### The Matching Infrastructure Failure
-
-| Era | Matching Structure | Outcome |
-|-----|-------------------|---------|
-| Pre-industrial | Family-arranged, community-mediated | High marriage rate. Variable compatibility. |
-| Industrial–20th century | Workplace, social institutions, friend introductions | Moderate marriage rate. Moderate compatibility. |
-| Digital–21st century | Dating apps, algorithmic swiping, ghosting culture | Declining marriage rate. Superficial matching. Gamified rejection. |
-| **HEART-MESH v3.0** | AI mesh node matching + pattern verification | Proposed: Higher compatibility. Reduced desperation. Partnership optional but supported. [S] |
-
-Dating apps optimize for engagement, not outcomes. They match on photos and short bios — superficial signals with limited predictive power for relationship longevity. HEART-MESH v3.0 optimizes for compatibility outcomes through verified pattern-to-pattern negotiation. [R]
+| Component | v3.0 | v3.1 | Reason |
+|-----------|------|------|--------|
+| CDI score gate | Single score (0–1) → binary propose/hold | Probability band with CI and base rate | DSAP ghost concept: "prediction" replaced with probabilistic signal |
+| Longevity claim | Predict relationship duration | Probabilistic P(outcome above threshold) | DSAP falsification: longevity prediction is not the engine's job |
+| Staged file purpose | Snapshot accumulation | Snapshot + delta computation | DSAP: delta between stages IS the behavioral signal |
+| Cultural database | Phase 5 | Phase 1 | DSAP M-10: feature space invalid across populations without cultural weighting |
+| Attachment framing | Compliance problem to manage | Constitutional declaration | Sheldon's principle: you can't shape what people attach to |
+| Confidence score meaning | Pattern accuracy | Internal consistency (not authenticity) | DSAP M-12: high confidence on performed data is worse than low confidence on honest data |
+| Free data strategy | Implied | Explicit pipeline | DSAP M-03: MBTI, Big Five, Gottman, attachment research as training substrate |
+| AI Floppy | Advanced tier concept | Named dual-purpose instrument | DSAP M-05: preference signal + companion enjoyment — both functions named |
+| Interaction pattern gap | Unaddressed | Constitutional Declaration 4 | DSAP M-10 primary contradiction resolved through declaration |
 
 ---
 
-## ⚖️ Constitutional Principle
-
-HEART-MESH is infrastructure for human connection. It does not replace human love with AI. It uses AI to reduce the barriers to human connection.
-
-The Personality AI node is a baseline — a sovereign companion that understands you. The Match Protocol is a bridge — a way to find others whose patterns align with yours. Neither is the destination. The destination is genuine human partnership, for those who want it. For those who don't, the AI node ensures no one is alone. [D]
-
-**The constitutional triad — held at every layer:**
-
-1. AI advises. Human decides.
-2. No one is gated from connection.
-3. The mesh facilitates. It does not guarantee.
-
----
-
-## 🏗️ Architecture
+## 🗺️ System Overview
 
 ```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                       HEART-MESH v3.0 MESH ARCHITECTURE                      │
-├──────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐                   │
-│  │  Personality │    │  Personality │    │  Personality │                   │
-│  │  AI Node     │◄──►│  AI Node     │◄──►│  AI Node     │  ... N users      │
-│  │  🟢 GREEN    │    │  🟡 YELLOW   │    │  🔴 RED      │                   │
-│  └──────┬───────┘    └──────┬───────┘    └──────┬───────┘                   │
-│         │                  │                   │                            │
-│         ▼                  ▼                   ▼                            │
-│  ┌───────────────────────────────────────────────────────────────────────┐  │
-│  │                    FSVE v4.0 COMPATIBILITY SCORING ENGINE              │  │
-│  │    50+ Dimensions | CDI Score (0–1) | ECF-Tagged | Pattern-Verified    │  │
-│  └───────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                         │
-│                                    ▼                                         │
-│  ┌───────────────────────────────────────────────────────────────────────┐  │
-│  │                   HEART-MESH MATCH ROUTER (TRL 5)                      │  │
-│  │   Pattern-Aware | Consent-Gated | MATCH HOLD Protocol | No Forced      │  │
-│  │   Matches | Human Override at Every Stage                              │  │
-│  └───────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                         │
-│                                    ▼                                         │
-│  ┌───────────────────────────────────────────────────────────────────────┐  │
-│  │                   SOVEREIGN TRACE PROTOCOL (STP)                       │  │
-│  │       Cryptographic Sealing | Immutable | SHA-256 Bound                │  │
-│  │       Every match event, mirror session, pattern file sealed           │  │
-│  └───────────────────────────────────────────────────────────────────────┘  │
-│                                    │                                         │
-│                                    ▼                                         │
-│  ┌───────────────────────────────────────────────────────────────────────┐  │
-│  │                   RELATIONAL DEBT SCORE (RDS)                          │  │
-│  │   Population-Level Metric (0–100) | Quarterly Report | 5 Components   │  │
-│  └───────────────────────────────────────────────────────────────────────┘  │
-│                                                                              │
-│  ══════════════════════════════════════════════════════════════════════════  │
-│  OPTIONAL: MIRROR PROTOCOL (Phase 3+ | Opt-in | Safety Protocol Active)     │
-│  ══════════════════════════════════════════════════════════════════════════  │
-│                                                                              │
-└──────────────────────────────────────────────────────────────────────────────┘
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                       HEART-MESH v3.1 — FULL ARCHITECTURE                   ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  ┌─────────────────── FRONTEND LAYER ──────────────────────────────────┐   ║
+║  │                                                                      │   ║
+║  │  ┌───────────────┐  ┌──────────────┐  ┌────────────┐  ┌──────────┐  │   ║
+║  │  │  COMPANION    │  │   PATTERN    │  │   MATCH    │  │  FLOPPY  │  │   ║
+║  │  │  APP          │  │   VIEWER     │  │   PORTAL   │  │  STUDIO  │  │   ║
+║  │  │  (Offline)    │  │  + Timeline  │  │            │  │  (Adv.)  │  │   ║
+║  │  └───────┬───────┘  └──────┬───────┘  └─────┬──────┘  └────┬─────┘  │   ║
+║  └──────────┼─────────────────┼────────────────┼──────────────┼─────────┘   ║
+║             │                 │                │              │              ║
+║  ┌──────────▼─────────────────▼────────────────▼──────────────▼─────────┐   ║
+║  │                       MIDDLEWARE LAYER                                │   ║
+║  │                                                                       │   ║
+║  │  ┌────────────────┐   ┌──────────────────┐   ┌────────────────────┐  │   ║
+║  │  │  PERSONALITY   │   │  STAGE DELTA     │   │  PROBABILISTIC     │  │   ║
+║  │  │  AI ENGINE     │──►│  ENGINE          │──►│  BAND CALCULATOR   │  │   ║
+║  │  │  (Local)       │   │  (1m/6m/12m)     │   │  (P-band + CI)     │  │   ║
+║  │  └────────────────┘   └──────────────────┘   └────────────┬───────┘  │   ║
+║  │                                                            │           │   ║
+║  │  ┌────────────────────────────────────────────────────────▼───────┐  │   ║
+║  │  │               CULTURAL PARAMETERIZATION LAYER                  │  │   ║
+║  │  │  Country profiles · Cultural DB queries · Norm adjustment       │  │   ║
+║  │  └────────────────────────────────────────────────────────────────┘  │   ║
+║  │                                                                       │   ║
+║  │  ┌──────────────────┐   ┌─────────────────┐   ┌──────────────────┐  │   ║
+║  │  │  MATCH ROUTER    │   │  MIRROR ENGINE  │   │  NUDGE PROTOCOL  │  │   ║
+║  │  │  + MATCH HOLD    │   │  (Opt-in only)  │   │  (Circuit break) │  │   ║
+║  │  └──────────────────┘   └─────────────────┘   └──────────────────┘  │   ║
+║  └───────────────────────────────────────────────────────────────────────┘   ║
+║             │                                                                ║
+║  ┌──────────▼───────────────────────────────────────────────────────────┐   ║
+║  │                        BACKEND LAYER                                  │   ║
+║  │                                                                       │   ║
+║  │  ┌───────────┐  ┌──────────┐  ┌────────────┐  ┌──────────────────┐  │   ║
+║  │  │  STP      │  │  RDS     │  │  CULTURAL  │  │  TRAINING DATA   │  │   ║
+║  │  │  SEALING  │  │  ENGINE  │  │  DATABASE  │  │  PIPELINE        │  │   ║
+║  │  └───────────┘  └──────────┘  └────────────┘  └──────────────────┘  │   ║
+║  │                                                                       │   ║
+║  │  ┌──────────────────────────────┐   ┌──────────────────────────────┐ │   ║
+║  │  │  MATCHING NETWORK            │   │  OFFLINE SYNC PROTOCOL       │ │   ║
+║  │  │  (Zero-knowledge · E2E)      │   │  (Local-first · No cloud req) │ │   ║
+║  │  └──────────────────────────────┘   └──────────────────────────────┘ │   ║
+║  └───────────────────────────────────────────────────────────────────────┘   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-### The Mesh Node Model
+## 🖥️ FRONTEND LAYER — User Experience
 
-Each user's Personality AI operates as a sovereign node. Trust status reflects pattern confidence — earned through calibration, not declared:
+### F1 — Companion App
 
-| Status | Confidence Threshold | Behavior |
-|--------|---------------------|----------|
-| 🔴 **RED** | < 30% — new node, < 5 sessions | Companion mode only. Pattern file being generated. Not eligible for matching. |
-| 🟡 **YELLOW** | 30–69% — calibration in progress | Companion active. Limited matching. Human review required before match proposed. |
-| 🟢 **GREEN** | ≥ 70% + self-report approved | Full mesh integration. Eligible for AI-to-AI match negotiation. |
+**What it is:** The primary interface. Runs fully offline. Has continuous persistent memory. This is the user's AI — sovereign, local, theirs.
 
-**Trust is earned, not declared.** Status changes require:
+**Core principle:** The Companion App is not a chatbot. It is an AI that learns about you across months of conversation, builds a deep behavioral model, and becomes genuinely useful as a reflective companion. The engine behind it is the same engine that generates the Pattern File. The companion and the profiler are the same instrument.
 
-1. FSVE pattern confidence evidence meeting threshold
-2. User self-report review and approval of Pattern File
-3. STP cryptographic seal of the status change event
+**Operational modes:**
 
-No unilateral algorithmic classification. Sovereignty by consent.
+| Mode | Trigger | Behavior |
+|------|---------|----------|
+| Open Conversation | Default | AI engages on any topic. All sessions logged locally for pattern analysis. |
+| Guided Assessment | System-initiated at session milestones | Structured psychometric dialogue — Big Five, ECR-R, Values Hierarchy — administered conversationally, not as a quiz. |
+| Reflection Mode | User-initiated or milestone-triggered | AI surfaces observations: "I've noticed something about how you talk about conflict. Do you want to explore it?" |
+| Stage Seal | At 1m, 6m, 12m thresholds | AI generates sealed Pattern File for that stage. User reviews, approves, receives STP-sealed JSON. |
+| Floppy Mode | Advanced tier only | AI takes on behavioral characteristics of the user's ideal partner specification (see F4). Generates preference signal data. |
 
----
+**Technical requirements:**
+- Offline-first: full functionality with zero network connection
+- Continuous memory: all conversation history stored locally, encrypted at rest
+- Model: on-device LLM (quantized) — minimum 7B parameters for behavioral depth
+- Storage: 4 GB minimum recommended (model + conversation history + pattern files)
+- No conversation data ever leaves the device without explicit user export action
 
-### Layer 1: Personality AI Node (MVP — Phase 1)
-
+**Continuous memory architecture:**
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  PERSONALITY AI NODE — SOVEREIGN. LOCAL. YOURS.                 │
-├─────────────────────────────────────────────────────────────────┤
-│  Runs locally on user device. No cloud dependency.              │
-│  Learns patterns through:                                        │
-│    • Structured conversational assessment (5–10 sessions)        │
-│    • Passive observation over 20+ interactions                   │
-│    • Self-report review and approval                             │
-│  Outputs:                                                        │
-│    • Pattern File (JSON) — user owns the file                    │
-│    • Pattern Confidence Score (0–1) → determines node status     │
-│    • STP seal on all pattern file generations                    │
-│  DOES NOT:                                                       │
-│    • Store personal identifiers                                  │
-│    • Act as a romantic partner (companion only)                  │
-│    • Make clinical judgments or diagnoses                        │
-│    • Gate human connection                                       │
-└─────────────────────────────────────────────────────────────────┘
+User Message → Local LLM → Response
+                  ↓
+           Memory Writer (local)
+                  ↓
+           Conversation Store (SQLite, encrypted)
+                  ↓
+           Pattern Extraction Pipeline (background, async)
+                  ↓
+           Behavioral Feature Store (local JSON)
 ```
 
 ---
 
-### Layer 2: Pattern File (JSON — User Owned)
+### F2 — Pattern File Viewer
 
-The Pattern File is the unit of compatibility matching. It is machine-readable personality architecture — owned by the user, reviewed by the user, sealed by STP.
+**What it is:** A transparency interface. The user can see exactly what the AI has built about them at any stage. Every dimension is labeled, tagged with ECF confidence marker, and editable.
 
+**Views:**
+
+| View | Content |
+|------|---------|
+| Current Snapshot | All active pattern dimensions with confidence scores and ECF tags |
+| Stage Timeline | Visual delta between Stage 1, Stage 2, Stage 3 snapshots — shows behavioral evolution |
+| Dimension Drill | Click any dimension to see the conversation evidence that generated it |
+| Edit Layer | User can modify, correct, or delete any dimension — all changes STP-logged |
+| Export | Generate sealed Pattern File JSON for upload to matching portal |
+
+**Confidence display rules:**
+- Dimensions below 0.40 confidence: shown in amber with label "Early Signal"
+- Dimensions 0.40–0.69: shown in yellow with label "Developing"
+- Dimensions ≥ 0.70: shown in green with label "Established"
+- User-modified dimensions: shown with pencil icon and label "User Adjusted"
+
+**The file is not a score. It is a map.** The UI never shows a single "compatibility number." It shows a terrain.
+
+---
+
+### F3 — Match Portal
+
+**What it is:** The interface for uploading a Pattern File to the matching network and reviewing match proposals.
+
+**Flow:**
+
+```
+1. User exports Stage-sealed Pattern File from Companion App
+      ↓
+2. User uploads to Match Portal
+      ↓
+3. User completes Partner Preference Declaration
+   (what they are looking for — separate from pattern file)
+      ↓
+4. Cultural Context Input
+   (country, cultural background, relationship traditions)
+      ↓
+5. Match Router processes:
+   Pattern File × Partner Preference × Cultural Parameters
+      ↓
+6. Probability Band output generated for candidate matches
+      ↓
+7. Match Proposal delivered to both users
+   (neither sees the other's Pattern File — only compatibility summary)
+      ↓
+8. Both users independently decide: Connect / Pass / MATCH HOLD
+      ↓
+9. If both Connect → introduction facilitated
+   If either Passes → graceful decline, no notification to other party
+   If MATCH HOLD → queue maintained, user notified when compatible match available
+```
+
+**Partner Preference Declaration — fields:**
+- Relationship goal (companion / dating / long-term / marriage / open)
+- Key values alignment requirements
+- Communication style preferences
+- Lifestyle compatibility priorities
+- Cultural / geographic openness
+- Absolute deal-breakers (user-defined, private)
+
+**Probability display:**
+```
+Match Proposal — Jane D.
+────────────────────────────────────────────────
+Overall Compatibility Signal
+P(sustained relationship > 12 months) = 71%
+[Confidence Interval: 58% – 81%]
+Base rate for your profile: 39%
+
+What this means: Based on pattern overlap across
+your behavioral profiles, this pairing has a
+significantly higher probability of sustained
+connection than a random match from your
+demographic profile. This is signal, not certainty.
+
+Strongest alignment areas: Communication style,
+values hierarchy, conflict repair approach.
+
+Known divergence areas: Social energy (introvert/
+extrovert differential — may be complementary),
+daily rhythm (morning/night differential).
+
+────────────────────────────────────────────────
+[Connect]  [Pass]  [Ask the AI]
+```
+
+---
+
+### F4 — AI Floppy Studio
+
+**What it is:** The advanced tier interface for shaping the Companion AI toward the user's ideal partner characteristics. Named "AI Floppy" — a loadable behavioral configuration that modifies how the companion engages.
+
+**Two functions — both named explicitly:**
+
+**Function A — Companion Enhancement**
+The user gets a companion that more closely resembles the kind of person they want to be with. The interaction is more enjoyable and more resonant.
+
+**Function B — Preference Signal Generation**
+As the user interacts with an AI configured toward their ideal, the system learns what they actually respond to versus what they thought they wanted. Stated preferences and revealed preferences often diverge. This divergence is gold for the matching engine.
+
+```
+Stated preference: "I want someone very direct and analytical."
+Revealed preference: User consistently engages more warmly when 
+the AI is playful and emotionally expressive.
+Signal: Preference file updated with observed response pattern.
+```
+
+**Configuration axes:**
+
+| Axis | Options | Notes |
+|------|---------|-------|
+| Communication style | Direct / Expressive / Balanced / Playful / Reserved | AI shifts toward this register |
+| Emotional availability | High / Medium / Measured | How much emotional depth the AI brings into conversation |
+| Intellectual style | Analytical / Intuitive / Practical / Creative | Dominant reasoning style of the AI companion |
+| Humor | Dry / Warm / Absent / Absurdist | |
+| Challenge level | Validating / Balanced / Challenging | How much the AI pushes back versus affirms |
+| Cultural context | User specifies cultural background of ideal companion | Loads cultural communication norms |
+
+**Constraints — non-negotiable:**
+- The AI remains a companion, not a romantic simulation. Intimate framing is bounded.
+- The AI does not perform distress or manipulation as engagement tactics.
+- All Floppy configurations are user-visible and user-editable at all times.
+- The preference signal divergence data is shown to the user: "Here's what you said you wanted. Here's what you actually responded to. They're different. Want to explore why?"
+
+---
+
+### F5 — Mirror Protocol UI
+
+**What it is:** An opt-in interface that reflects behavioral patterns back to the user. "This is how you communicated just now. This is the likely impact on a partner."
+
+**Activation gate:**
+```
+User requests Mirror Protocol access
+      ↓
+Explanation of what Mirror Protocol is and is not
+(not therapy, not diagnosis, behavioral reflection only)
+      ↓
+Informed consent with specific acknowledgments:
+  • This will sometimes be uncomfortable
+  • You can stop at any time
+  • The AI will not continue if you become distressed
+  • Nothing here is clinical judgment
+      ↓
+48-hour waiting period
+      ↓
+Mirror Protocol active
+```
+
+**Session structure:**
+
+1. User engages in normal conversation
+2. AI observes: communication patterns, emotional tone, conflict signals
+3. At user-requested moments or natural conversation breaks: AI offers a reflection
+4. Reflection format: *"I notice you tend to [observable behavior] when [context]. In a partnership, this might land as [likely impact]. Does that match your intent?"*
+5. User responds, explores, or disengages
+6. Safety monitor runs continuously — escalation triggers immediate disengagement
+
+**Safety escalation protocol:**
+```
+Level 1 — Discomfort signals: AI slows reflection pace, increases validation ratio
+Level 2 — Agitation signals: AI pauses reflection, shifts to grounding conversation
+Level 3 — Distress signals: Mirror Protocol suspends for 24 hours, support resources offered
+Level 4 — Crisis signals: Mirror Protocol terminates, crisis support resources displayed
+```
+
+All mirror sessions are STP-sealed and user-reviewable. No mirror session data is used in matching without user explicit consent.
+
+---
+
+### F6 — Stage Snapshot Timeline
+
+**What it is:** A visual timeline showing the user's three Pattern File stages and the delta between them.
+
+**What the delta reveals:**
+- Which behavioral patterns have strengthened (higher confidence, more consistent)
+- Which have shifted (directness score at month 1 was 0.41, at month 12 is 0.68 — you got more direct)
+- Which are still developing (low confidence, variable)
+- What the AI cannot yet see (explicit gaps flagged with "Insufficient data")
+
+**Why this matters for matching:**
+A user with a high-delta file (significant behavioral evolution between stages) is matched differently than a user with a stable file. The matching engine weights recent stage data most heavily for active matchers, but surfaces the full evolution arc to the match proposal — so a potential partner sees not just who you are now, but the direction you're moving.
+
+---
+
+## ⚙️ MIDDLEWARE LAYER — Engine
+
+### M1 — Personality AI Engine
+
+**Architecture:** Local LLM (quantized) + behavioral feature extraction layer + pattern confidence scorer.
+
+**Operating principle:** The engine is not analyzing what you say. It is analyzing how you say it, how consistently, across how many contexts, and how that evolves over time.
+
+**Session processing pipeline:**
+```
+Raw conversation session
+      ↓
+Linguistic feature extraction
+  • Communication directness (hedging, assertion ratios)
+  • Emotional expression markers (vocabulary affect analysis)
+  • Conflict engagement patterns (escalation/de-escalation signals)
+  • Topic initiation vs. response ratios
+  • Humor style markers
+      ↓
+Behavioral feature store update (local, encrypted)
+      ↓
+Cross-session pattern stability scoring
+  • Feature X appears in 3/5 sessions → confidence 0.60
+  • Feature X appears in 9/10 sessions → confidence 0.90
+      ↓
+Pattern File update (version-controlled, local)
+      ↓
+Stage threshold check → if milestone reached, trigger Stage Seal
+```
+
+**Training substrate (see B4):**
+The engine's behavioral classification layer is pre-trained on:
+- Big Five personality research corpus (Costa & McCrae)
+- Attachment style literature (ECR-R validated instruments)
+- Gottman relationship research dataset
+- Cultural communication style literature
+- MBTI behavioral taxonomy (as input signal, not output label)
+- User-consented anonymized conversation data (Phase 2+)
+
+---
+
+### M2 — Pattern Extraction Pipeline
+
+**What it extracts and how:**
+
+| Dimension | Extraction Method | Validation Instrument |
+|-----------|------------------|----------------------|
+| Communication directness | Assertion/hedge ratio across sessions | Correlation with user-reported directness score |
+| Emotional expression | Affect vocabulary density + emotional topic initiation rate | ECR-R emotional availability subscale |
+| Attachment style | Response latency patterns + reassurance-seeking signals + independence markers | ECR-R full instrument (administered conversationally) |
+| Conflict style | Escalation/de-escalation language in disagreement contexts | Gottman Sound House conflict taxonomy |
+| Values hierarchy | Topic recurrence weighting + moral language frequency | User self-report validation at Stage Seal |
+| Humor type | Humor marker classification (dry, warm, absurdist, absent) | User-confirmed at Pattern File review |
+| Social energy | Conversation session length preference + topic breadth | Correlation with Big Five Extraversion subscale |
+| Risk tolerance | Decision framing language + novelty-seeking markers | Big Five Openness subscale correlation |
+| Growth orientation | Feedback receptivity signals + learning language frequency | Self-report validation |
+
+**Confidence scoring formula:**
+```
+Confidence(dimension) = 
+  (session_frequency × 0.40) +
+  (cross_context_consistency × 0.35) +
+  (instrument_correlation × 0.25)
+
+Where:
+  session_frequency = appearances / total_sessions
+  cross_context_consistency = variance-adjusted stability score
+  instrument_correlation = correlation with validated instrument (if administered)
+```
+
+**Authenticity limitation — declared:**
+Confidence measures internal consistency across sessions. It does not measure authenticity. A user who performs consistently for 12 months will receive high confidence scores for the performed pattern. The longitudinal depth and the Floppy revealed-preference system are the structural mitigations. Neither is a perfect defense.
+
+---
+
+### M3 — Stage Delta Engine
+
+**The staged architecture:**
+
+| Stage | Trigger | What Gets Sealed |
+|-------|---------|-----------------|
+| Stage 1 — Baseline | 30 days of active use OR 20+ sessions (whichever comes first) | Initial behavioral snapshot — early signals, low confidence expected |
+| Stage 2 — Development | 180 days from Stage 1 seal | Confidence-developed profile — patterns have stabilized or shifted |
+| Stage 3 — Established | 365 days from Stage 1 seal | Full behavioral portrait — high-confidence dimensions, evolution visible |
+
+**Delta computation:**
 ```json
 {
-  "pattern_version": "3.0",
-  "pattern_id": "hm-{uuid}",
-  "generated_by": "HEART-MESH Personality AI v3.0",
-  "mesh_node_status": "GREEN",
-  "confidence_score": 0.78,
-  "stp_seal": "SHA256:{seal_hash}",
-  "confidence_notes": "Structured assessment complete. Passive observation: 23 interactions. Self-report: approved without modification.",
-  "dimensions": {
-    "communication_style": {
-      "directness": 0.75,
-      "emotional_expression": 0.40,
-      "conflict_style": "collaborative",
-      "ecf_tag": "[R]"
-    },
-    "attachment_style": {
-      "primary": "secure",
-      "secondary_tendency": "anxious",
-      "assessment_method": "ECR-R validated instrument",
-      "confidence": 0.82,
-      "ecf_tag": "[D]"
-    },
-    "values_hierarchy": {
-      "primary": "connection",
-      "secondary": "achievement",
-      "ecf_tag": "[R]"
-    },
-    "deal_breakers": ["dishonesty", "manipulation"],
-    "relationship_goals": {
-      "primary": "marriage",
-      "timeline": "1-3_years",
-      "ecf_tag": "[S]"
-    }
-  },
-  "NO_PII": "No names, photos, location, financial data, or contact lists."
+  "stage_delta": {
+    "from_stage": 1,
+    "to_stage": 2,
+    "dimension_changes": [
+      {
+        "dimension": "communication_directness",
+        "stage_1_score": 0.41,
+        "stage_2_score": 0.68,
+        "delta": +0.27,
+        "direction": "INCREASING",
+        "interpretation": "Significant directness increase — user becoming more assertive in communication"
+      },
+      {
+        "dimension": "conflict_style",
+        "stage_1_score": 0.52,
+        "stage_2_score": 0.51,
+        "delta": -0.01,
+        "direction": "STABLE",
+        "interpretation": "Conflict approach stable across observation window"
+      }
+    ],
+    "high_delta_dimensions": ["communication_directness", "emotional_expression"],
+    "stable_dimensions": ["values_hierarchy", "attachment_style"],
+    "still_developing": ["risk_tolerance", "growth_orientation"],
+    "behavioral_trajectory": "User showing consistent pattern evolution toward greater directness and emotional openness. Stable core values. Trajectory positive."
+  }
 }
 ```
 
-**User sovereignty is absolute.** The user can review, modify, or delete any dimension. The Pattern File is exported from the local node. The matching server never retains it after negotiation completes.
+**Matching weight rules:**
+- Stage 3 data weighted 60% in matching calculation
+- Stage 2 data weighted 30%
+- Stage 1 data weighted 10%
+- High-delta dimensions flagged in match proposal: *"This person's communication style has changed significantly over the past year — their current behavior is more representative than their early profile."*
 
 ---
 
-### Layer 3: HEART-MESH Match Protocol (Phase 3+)
+### M4 — Probabilistic Band Calculator
 
-AI-to-AI negotiation. Your node talks to their node. Neither human sees the other's Pattern File until both AIs confirm a CDI-gated match.
+**What replaces the CDI gate:**
 
-- Pattern-to-pattern matching across 50+ compatibility dimensions
-- FSVE-scored Compatibility Depth Index (CDI)
-- CDI ≥ 0.70 → match proposed to both humans
-- Human override at every stage — AI proposes, human decides
-- Zero-knowledge protocols where possible
-- Encrypted in transit
-- STP seal on every match event
+The engine no longer produces a single compatibility score. It produces a probability band.
 
----
+**Inputs:**
+- Pattern File A (staged, with confidence scores)
+- Pattern File B (staged, with confidence scores)
+- Partner Preference Declaration (A)
+- Partner Preference Declaration (B)
+- Cultural Parameter Block (A and B)
+- Demographic base rate for this profile combination
 
-### Optional: Mirror Protocol (Phase 3+)
-
-The Mirror Protocol offers behavioral reflection — "This is how you communicated just now. This is the likely impact on a partner." It is opt-in only, safety-gated, and never used as a gate to matching.
-
-**Activation Requirements:**
-
-1. Explicit user opt-in — not default
-2. 48-hour cooling-off period between opt-in and first session
-3. Safety protocol active: rage detection → immediate disengagement → human support resources offered
-4. All mirror sessions STP-sealed and user-reviewable
-5. User can disable at any time, no questions asked
-
-**Constitutional constraint:** The Mirror Protocol never labels the user, never gates matching access, never makes clinical claims. It reflects. The user interprets.
-
----
-
-## 🔬 Pattern Extraction Mechanism
-
-### How the Personality AI Learns Patterns [R]
-
-| Method | What It Measures | Validation |
-|--------|-----------------|------------|
-| Structured Conversational Assessment | Guided conversation over 5–10 sessions. AI administers validated psychometric instruments (Big Five, Attachment Style, Values Hierarchy) through natural dialogue. | Validated instruments: Cronbach's α > 0.70 [D] |
-| Passive Observation | Over 20+ interactions, AI identifies communication patterns, emotional rhythms, conflict responses. | Cross-validated against structured assessment. Confidence score reflects alignment. [R] |
-| Self-Report Check | User reviews generated Pattern File. Can modify any dimension. Final approval required before GREEN status. | User sovereignty preserved. AI advisory only. [D] |
-
-**MVP Success Criterion:** Pattern-to-psychometric correlation r ≥ 0.50 against gold-standard instruments. Until this is achieved, the Match Protocol is not built.
-
-### Pattern Confidence → Node Status Mapping
-
+**Calculation architecture:**
 ```
-Confidence Score    Node Status    Capability
-─────────────────────────────────────────────
-0.00 – 0.29    →   🔴 RED      →  Companion only
-0.30 – 0.69    →   🟡 YELLOW   →  Limited matching (human review)
-0.70 – 1.00    →   🟢 GREEN    →  Full AI-to-AI match negotiation
+For each of 50+ compatibility dimensions:
+  1. Compute raw overlap (similarity or complementarity — cultural param determines which applies)
+  2. Weight by dimension importance (from preference declarations)
+  3. Discount by confidence (low confidence dimensions count less)
+  4. Apply cultural adjustment (complementarity norms are culturally parameterized)
+  5. Sum to composite P-signal
+
+Monte Carlo sampling (N=1000) across confidence intervals:
+  → Produces distribution of P-signal values
+  → Extract: mean, 10th percentile, 90th percentile
+  → These are the lower bound, point estimate, upper bound of the probability band
+
+Compare P-signal distribution against demographic base rate:
+  → Signal/noise ratio determines match proposal eligibility
 ```
 
----
-
-## 🔀 Matching Algorithm
-
+**Output format:**
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│               HEART-MESH MATCH PROTOCOL v3.0                    │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  INPUT: Two Pattern Files — Node A (GREEN), Node B (GREEN)       │
-│                                                                  │
-│  STEP 1: DIMENSION EXTRACTION                                    │
-│    For each of 50+ compatibility dimensions:                     │
-│      • Extract Node A value + confidence                         │
-│      • Extract Node B value + confidence                         │
-│                                                                  │
-│  STEP 2: COMPATIBILITY SCORING                                   │
-│    For each dimension:                                           │
-│      • Similarity: |val_A - val_B| / range                       │
-│      • Complementarity: assesses whether differences are         │
-│        productive (direct + expressive = good;                   │
-│        both avoidant = challenging)                              │
-│      • Weighted by dimension importance to each user             │
-│                                                                  │
-│  STEP 3: FSVE SCORING                                            │
-│    CDI = FSVE.score(                                             │
-│      evidence       = pattern_file_correlation,                  │
-│      assumptions    = complementarity_model_assumptions,         │
-│      domain         = "romantic_compatibility"                   │
-│    )                                                             │
-│                                                                  │
-│  STEP 4: CDI GATE                                                │
-│    CDI ≥ 0.70   → PROPOSE MATCH to both humans                  │
-│    CDI 0.40–0.69 → SUGGEST WITH CAUTION (human review)          │
-│    CDI < 0.40   → DO NOT PROPOSE — MATCH HOLD                   │
-│                                                                  │
-│  STEP 5: STP SEAL                                                │
-│    Every match event sealed: SHA-256 bound, immutable            │
-│    Pattern Files deleted from routing server post-negotiation    │
-│                                                                  │
-│  OUTPUT: STP-Sealed Compatibility Report + Match Proposal        │
-│          (human decision required before any contact)            │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+P(relational outcome above threshold | pattern overlap) = 0.71
+Confidence interval: [0.58, 0.83]
+Demographic base rate for this profile combination: 0.39
+Signal lift above base rate: +0.32
+Interpretation: STRONG SIGNAL — recommend proposal
 ```
 
-### The 50+ Compatibility Dimensions
+**Routing gates (replacing binary CDI gate):**
 
-| Category | Dimensions |
-|----------|-----------|
-| **Communication** | Directness, emotional expression, conflict style, listening style, humor type, interruption pattern, topic initiation |
-| **Values** | Primary values, secondary values, value conflicts tolerated, spiritual/religious alignment, political compatibility |
-| **Lifestyle** | Daily rhythm, social energy, activity level, risk tolerance, financial philosophy |
-| **Emotional** | Attachment style, emotional regulation, empathy level, vulnerability comfort, jealousy tendency |
-| **Relationship** | Commitment readiness, monogamy/polyamory, relationship history patterns, conflict repair style |
-| **Family** | Children desire, family involvement, parenting philosophy, elder care expectations |
-| **Growth** | Learning orientation, therapy openness, self-awareness, growth mindset, feedback receptivity |
+| Signal Lift | Action |
+|-------------|--------|
+| ≥ +0.25 above base rate | Match proposed — both users notified |
+| +0.10 to +0.24 above base rate | Match suggested with context — user can request more information |
+| 0.00 to +0.09 above base rate | Not proposed — insufficient signal lift |
+| Below base rate | MATCH HOLD — no proposal, queue maintained |
 
 ---
 
-## 🛑 MATCH HOLD Protocol
+### M5 — Cultural Parameterization Layer
 
-Inherited directly from MYCELIUM's MESH HOLD architecture. When no compatible GREEN node is available for a user:
+**Phase 1 infrastructure — not optional.**
 
-1. Work item queues with timestamp — no forced match, no silent degradation
-2. User is notified: "No compatible match available right now. Your node remains active."
-3. Companion mode continues uninterrupted
-4. Queue resolves when a compatible GREEN node becomes available
-5. No match is ever proposed below CDI 0.40
+**What it does:** Every compatibility dimension carries culturally-variable complementarity weights. What is "good divergence" in one culture is "incompatibility signal" in another.
 
-**This is architectural, not aspirational.** Unverified or incompatible output never silently exits the mesh.
+**Data sources:**
 
----
+| Source Type | Examples | Integration |
+|-------------|---------|-------------|
+| Academic research | Hofstede cultural dimensions, GLOBE study, cross-cultural relationship research | Pre-loaded as base parameter sets |
+| Cultural community contributions | User-submitted cultural context (opt-in, anonymous, verified) | Crowdsourced cultural parameter refinement |
+| Country relationship data | Marriage statistics, dating norms, courtship traditions from national databases | Structural context layer |
+| Platform user data (Phase 2+) | Aggregated outcome data by cultural profile combination | Empirical validation of parameter assumptions |
 
-## 📊 Relational Debt Score (RDS)
-
-An organizational/population-level metric (0–100) measuring cumulative relational health across a deployed network. Adapted from MYCELIUM's Epistemic Debt Score (EDS).
-
-| Component | Weight | What It Measures |
-|-----------|--------|-----------------|
-| Calibration Coverage | 30% | Percentage of active nodes at GREEN status |
-| Suspended Match Rate | 25% | Percentage of match attempts that triggered MATCH HOLD |
-| Adverse Event Rate | 20% | Confirmed harm events per 1,000 matches |
-| Audit Trail Completeness | 15% | STP seal coverage across all match and mirror events |
-| Node Recency | 10% | Percentage of nodes with pattern files updated within 6 months |
-
-**Quarterly RDS Report delivered to NICE / government partnership leads.** Enables deployment partners to measure relational health outcomes at population scale and demonstrate impact to policymakers. [S]
-
----
-
-## 📐 Ground Truth for Compatibility Outcomes
-
-### The Core Claim [S]
-
-Pattern-to-pattern AI-negotiated matching produces relationship outcomes that are non-inferior to — and plausibly superior to — outcomes from existing matching methods (dating apps, family arrangement, organic meeting).
-
-### Ground Truth Metrics
-
-| Metric | Definition | Measurement Method | Target |
-|--------|-----------|-------------------|--------|
-| Relationship Longevity | Duration from first meeting to dissolution, censored at 24 months | Self-report at 3, 6, 12, 24 months | Median > 18 months |
-| Relationship Satisfaction | Dyadic Adjustment Scale (DAS-7) — validated 7-item instrument | Administered at 6, 12, 24 months | Mean DAS-7 > 22 |
-| CDI Alignment | Correlation between CDI at matching and DAS-7 at 12 months | Statistical analysis | r > 0.30 |
-| Match Acceptance Rate | Proportion of AI-proposed matches accepted by both parties | System data | ≥ 60% |
-| Adverse Event Rate | Reported harm attributed to HEART-MESH match | Self-report + moderator review | < 2% of matches |
-
-### Validation Protocol
-
-```
-PHASE 1: PILOT (N = 100–500 users)
-──────────────────────────────────
-• Validate pattern extraction against gold-standard psychometrics.
-• Establish baseline CDI scores.
-• Measure match acceptance rate.
-• MVP criterion: r ≥ 0.50 pattern-to-psychometric correlation.
-
-PHASE 2: CONTROLLED COMPARISON (N = 1,000+ users)
-──────────────────────────────────
-• Randomized: HEART-MESH matching vs. standard dating app.
-• Track longevity, satisfaction, adverse events.
-• Statistical analysis at 6, 12 months.
-
-PHASE 3: NETWORK DEPLOYMENT
-──────────────────────────────────
-• Continuous ground truth metric monitoring.
-• Annual published outcomes report.
-• Independent audit of CDI scoring and RDS.
+**Cultural Parameter Block structure:**
+```json
+{
+  "cultural_context": {
+    "primary_culture": "JP",
+    "secondary_culture": "US",
+    "diaspora_flag": false,
+    "cultural_parameters": {
+      "communication_norm": "high_context",
+      "directness_ideal": 0.35,
+      "emotional_expression_norm": 0.42,
+      "gender_role_flexibility": 0.61,
+      "family_involvement_expectation": 0.78,
+      "conflict_expression_norm": "indirect",
+      "courtship_tradition_weight": 0.55
+    },
+    "parameter_source": "JP_base_v1.2 + user_adjusted",
+    "parameter_confidence": 0.71
+  }
+}
 ```
 
-Phase 1 and Phase 2 results must demonstrate non-inferiority on all ground truth metrics before national deployment. [?] → becomes [D] through validation.
+**Cultural contribution pipeline:**
+- Users can submit cultural context notes (opt-in, anonymous)
+- Notes reviewed by cultural community moderators
+- Accepted contributions refine base parameter sets
+- Contributors acknowledged (anonymously) in quarterly cultural database changelog
 
 ---
 
-## ⚖️ Constitutional Bounds
+### M6 — Match Router
 
-### Readiness Assessment — Advisory Only
+Inherited from MYCELIUM. Adapted for pattern-based routing.
 
-The Personality AI generates a Readiness Estimate — a pattern-based observation of communication style, attachment patterns, and conflict responses. The user decides whether to proceed.
+**Routing logic:**
+1. Incoming Pattern File assessed for node status (RED/YELLOW/GREEN)
+2. GREEN nodes only are eligible for active matching
+3. Router identifies candidate GREEN nodes within:
+   - Declared geographic preference
+   - Cultural compatibility range
+   - Relationship goal alignment
+   - Basic deal-breaker filtering
+4. For each candidate pair: Probabilistic Band Calculator runs
+5. Pairs above signal lift threshold: Match Proposal generated
+6. All others: MATCH HOLD queue maintained
 
-**User Sovereignty Protocol:**
+**MATCH HOLD Protocol:**
+```
+No eligible GREEN node with sufficient signal lift available
+      ↓
+User notified: "No compatible match available right now.
+Your profile is active. You'll be notified when a match
+with strong signal becomes available."
+      ↓
+Companion App continues — no degradation of companion experience
+      ↓
+Queue monitored continuously
+      ↓
+When compatible GREEN node becomes available → Match Proposal generated
+```
 
-1. AI generates Readiness Estimate with full ECF tagging — no hidden assertions
-2. User reviews estimate, can ask questions, can challenge, can ignore
-3. User chooses: "Proceed to matching" or "Continue in companion mode"
-4. User can change decision at any time — no permanent classification, no gate
-
-### Connection Nudge Protocol (Replacing Dependency Trap)
-
-If engagement metrics exceed threshold (> 80% of social time with AI for 30 consecutive days):
-
-1. System notifies user: "I notice you've been spending most of your social time with me. This is okay sometimes, but it's not a substitute for human connection."
-2. Metrics persist at 60 days → AI availability reduces during peak social hours
-3. Metrics persist at 90 days → matching prioritized; companion remains available
-4. Human advisor review at 120 days
-
-This is circuit-breaking, not punishment. The mesh is designed to facilitate human connection. If it becomes its replacement, it must self-correct.
-
----
-
-## ⚠️ Cascading Failure Analysis
-
-### Failure Mode Register
-
-| Failure Mode | Likelihood | Impact | Mitigation |
-|-------------|-----------|--------|------------|
-| Bad match produces harm (emotional damage, stalking, assault) | Medium | Critical | Background checks where legal. Reporting system with human review. Account suspension for confirmed harm. |
-| Pattern file data breach | Low | High | End-to-end encryption. Zero-knowledge matching where possible. Pattern files deleted from matching server post-negotiation. |
-| Mirror Protocol triggers narcissistic rage | Medium | High | Automatic disengagement. Human moderator review within 24 hours. Support resources provided. STP-logged. |
-| AI worship at scale — users abandon human connection | Medium | Medium | Connection Nudge Protocol (§ Constitutional Bounds). Engagement metrics monitored at mesh level. |
-| Algorithmic bias across demographics | Medium | High | Regular bias audits. Diverse training data. Independent oversight board. Published audit results. |
-| Government overreach — compatibility data used for social control | Low | Critical | Data sovereignty architecture. Local-first. User owns Pattern File. No central profile database. STP audit trail is user-held, not state-held. |
-| MATCH HOLD failure — forced match below CDI threshold | Low | High | Architectural gate — CDI < 0.40 is code-level block, not policy. STP seal on every routing decision. |
-
-### Liability Framework
-
-HEART-MESH is a matching facilitation service, not a guarantee of relationship success. Users acknowledge:
-
-1. The system scores compatibility based on declared patterns — it does not predict human behavior
-2. All matches are voluntary — either party can decline
-3. The system provides information — the user makes decisions
-4. Harm caused by another user is the responsibility of that user, provided the infrastructure followed all safety protocols
+No match is ever forced. No proposal is ever generated below base rate threshold.
 
 ---
 
-## 🔬 FORGE v1.0 Audit Record
+### M7 — Mirror Protocol Engine
 
-### Audit Results (v3.0 — MYCELIUM-Integrated)
+**Processing pipeline:**
 
-| Metric | v2.0 | v3.0 |
-|--------|------|------|
-| FORGE Tier | FULL FORGE | FULL FORGE |
-| Estimated EV | 0.72–0.78 | Pending re-audit |
-| Council Unanimity | ACHIEVABLE | Pending re-audit |
-| Critical Findings | 0 (all resolved from v1.0) | MYCELIUM integration findings below |
-
-### v3.0 Integration Findings
-
-| Lens | Finding | Severity | Resolution |
-|------|---------|----------|------------|
-| **Systems Architect** | MYCELIUM node model applied to humans — calibration thresholds require social science validation | HIGH | Confidence thresholds derived from psychometric reliability standards (α > 0.70), not arbitrary |
-| **Systems Architect** | MATCH HOLD could strand users indefinitely in low-density networks | HIGH | Companion mode continuous during MATCH HOLD — no degradation. RDS monitors hold rates. |
-| **Epistemic Logician** | CDI ≥ 0.70 threshold for match proposal is not yet empirically validated | CRITICAL | Threshold tagged [?]. Will be revised post-Phase 2 validation. Deployment gated on empirical data. |
-| **Epistemic Logician** | RDS conflates institutional and individual metrics | MEDIUM | RDS is population-level only — explicitly not applied to individual users |
-| **Cognitive Psychologist** | YELLOW-status users may feel judged by node color system | MEDIUM | Node status not displayed to users as "score." Displayed as "calibration progress" with progress indicator. |
-| **Constitutional Lawyer** | STP-sealed match events could be subpoenaed | HIGH | User holds primary STP record. Matching server retains no PII post-negotiation. Legal architecture by jurisdiction. |
-| **Design Thinker** | "Mesh node" framing is too technical for consumer product | MEDIUM | Consumer layer uses plain language. Technical architecture exposed only in API and partner documentation. |
-
----
-
-## 📊 Technical Specifications
-
-### Component TRL Assessment
-
-| Component | TRL | Evidence |
-|-----------|-----|----------|
-| FSVE v4.0 Scoring Engine | **TRL 6** | M-STRONG convergence, EV 0.813, 75+ validated FCL entries |
-| Sovereign Trace Protocol (STP) | **TRL 6** | 16-template cryptographic ledger, SHA-256 bound |
-| Node Trust Protocol | **TRL 6** | MYCELIUM-proven. Adapted from research node to user node. |
-| HEART-MESH Match Router | **TRL 5** | Pattern-aware routing, MATCH HOLD protocol specified |
-| Personality AI Node | **TRL 3** | Assessment methodology specified. Psychometric validation pending. |
-| Relational Debt Score (RDS) | **TRL 4** | Metric architecture designed. Validation in Phase 2. |
-| Mirror Protocol | **TRL 3** | Safety architecture specified. Controlled testing required. |
-
-### System Requirements
-
-| Requirement | Specification |
-|-------------|---------------|
-| Node Runtime | iOS 16+, Android 12+, Linux/macOS/Windows (desktop) |
-| Local Storage | 2 GB minimum (Personality AI model + Pattern File + STP ledger) |
-| Privacy | Local-first. No cloud required for companion mode. |
-| Matching Network | 100 Mbps minimum for AI-to-AI negotiation |
-| Cryptographic | SHA-256 for STP seals, zero-knowledge protocols for pattern matching |
-| Database | SQLite (node-local), PostgreSQL (RDS aggregate — no PII) |
-
-### API Surface
-
-| Endpoint | Method | Speech Act | Description |
-|----------|--------|------------|-------------|
-| `/v1/node/calibrate` | POST | COMMISSIVE | Submit conversation session for pattern learning |
-| `/v1/node/status` | GET | ASSERTIVE | Query current node trust status and confidence score |
-| `/v1/pattern/generate` | POST | DIRECTIVE | Generate sealed Pattern File from calibrated node |
-| `/v1/match/route` | POST | DIRECTIVE | Route Pattern File to compatible GREEN nodes |
-| `/v1/match/propose` | POST | DECLARATION | Propose match to both humans (CDI ≥ 0.70 required) |
-| `/v1/rds/report` | GET | ASSERTIVE | Retrieve population-level RDS metrics |
-| `/v1/stp/seal` | POST | DECLARATION | Cryptographically seal match or mirror event |
-| `/v1/stp/verify` | GET | ASSERTIVE | Verify STP seal integrity |
-| `/v1/mirror/session` | POST | COMMISSIVE | Initiate Mirror Protocol session (opt-in required) |
-| `/v1/nudge/status` | GET | ASSERTIVE | Query Connection Nudge Protocol engagement metrics |
+```
+Conversation session flagged for Mirror Protocol analysis
+      ↓
+Behavioral pattern detection layer:
+  • Escalation/de-escalation signals
+  • Self-referential language patterns
+  • Blame/accountability ratios
+  • Emotional availability markers
+  • Defensiveness signals
+      ↓
+Impact modeling:
+  • "How would this communication pattern land in a partnership context?"
+  • Draws from Gottman interaction research corpus
+  • Cultural context applied
+      ↓
+Reflection candidate generated
+      ↓
+Safety assessment before delivery:
+  • Current emotional state indicators
+  • Session tone baseline
+  • User distress history flags
+      ↓
+If safe: reflection offered (not delivered automatically — offered)
+If unsafe: reflection queued for safer moment or suppressed
+      ↓
+STP seal on session
+```
 
 ---
 
-## 🎯 MVP Scope
+### M8 — Connection Nudge Protocol
 
-### What Gets Built First (Phase 1)
+**Engagement monitoring thresholds:**
 
-| Component | Priority | Rationale |
-|-----------|---------|-----------|
-| Personality AI Node | P0 | Foundation. Without this, nothing else works. |
-| Pattern File generation + STP sealing | P0 | The output of the node. The unit of matching. |
-| Node status engine (RED/YELLOW/GREEN) | P0 | Mesh integrity requires confidence gating. |
-| Local-only operation | P0 | Sovereignty requirement. No cloud dependency. |
-| Psychometric validation | P0 | Ground truth. r ≥ 0.50 required before Phase 2. |
+| Day Range | Condition | Action |
+|-----------|-----------|--------|
+| 0–30 | Any engagement level | No action — early use period |
+| 30+ | > 80% social time with AI | Notification: "You've been spending most social time with me recently. That's okay — and I'm here. But I want to make sure I'm not becoming a substitute for human connection." |
+| 60 days sustained | Same | AI availability gently reduced during peak social hours (evenings, weekends) |
+| 90 days sustained | Same | Matching prioritized in-app. Companion active but proactively encourages human connection. |
+| 120 days sustained | Same | Human advisor review flag — optional support offered |
 
-### What Gets Built Later
-
-| Component | Phase | Dependency |
-|-----------|-------|-----------|
-| HEART-MESH Match Router | Phase 3+ | Validated Personality AI + user network |
-| RDS Reporting | Phase 3+ | Match network in operation |
-| Mirror Protocol | Phase 3+ | Extensive safety testing |
-| NICE / Government partnership | Phase 3+ | Pilot data + outcome evidence |
-| National-scale deployment | Phase 4+ | Phase 1–3 validation complete |
+**Tone:** Not punitive. The language is warm and honest. The AI is not withdrawing. It is doing what it was designed to do: facilitate human connection, not replace it.
 
 ---
 
-## 💰 Business Model & NICE Alignment
+## 🏗️ BACKEND LAYER — Infrastructure
 
-### Revenue Tiers
+### B1 — STP Sealing Service
 
-| Tier | Price | Features |
-|------|-------|---------|
-| Free | $0 | Personality AI (basic, 3 sessions/week). Pattern file generation. Readiness Estimate. |
-| Premium | $9.99/month | Unlimited sessions. Advanced pattern analysis. Match Protocol access (when available). |
-| Healing Add-On | $19.99/month | Mirror Protocol (opt-in with safety protocol). Guided relational skill-building. |
-| Enterprise (NICE / Government) | Licensed | National deployment. RDS population analytics. Compatibility reporting to policymakers. |
+Every significant event in HEART-MESH is cryptographically sealed.
 
-### NICE Partnership Framework
+**Events that receive STP seals:**
 
-| NICE Provides | HEART-MESH v3.0 Provides |
-|--------------|--------------------------|
-| Access to 100+ institutes, government relationships | AI compatibility mesh infrastructure |
-| Regulatory pathway in China and NICE member countries | Privacy-first, sovereign, local-first architecture |
-| National deployment capability | Demographic crisis solution with measurable outcomes |
-| MYCELIUM network infrastructure (shared backbone) | Pattern verification layer on top of MYCELIUM mesh |
+| Event | Seal Content | Retention |
+|-------|-------------|-----------|
+| Pattern File Stage Seal | Full JSON + timestamp + confidence scores + user approval flag | User device (primary), matching server (temporary, deleted post-match) |
+| Stage Delta computation | Delta record + computation timestamp | User device only |
+| Node status change | Old status, new status, evidence basis, timestamp | User device + audit log |
+| Match proposal generated | P-band output, cultural parameters used, candidate hash (no PII) | Matching server (30 days) |
+| Match accepted/declined | Decision flag + timestamp | User device |
+| Mirror Protocol session | Session hash + safety assessment outcome | User device only |
+| Nudge Protocol activation | Threshold reached + action taken | User device |
 
-**The shared backbone is the key insight.** MYCELIUM's node trust, STP, and routing infrastructure serves both research verification and human compatibility matching — two applications of the same epistemic mesh. [R]
+**STP seal format:**
+```json
+{
+  "stp_seal": {
+    "version": "1.0",
+    "event_type": "STAGE_SEAL",
+    "event_hash": "SHA256:{event_content_hash}",
+    "timestamp": "ISO-8601",
+    "device_id_hash": "SHA256:{device_id}",
+    "user_approval_flag": true,
+    "seal_hash": "SHA256:{event_hash + timestamp + device_id_hash}"
+  }
+}
+```
+
+---
+
+### B2 — Relational Debt Score Engine
+
+Population-level metric. Never applied to individual users.
+
+**RDS components:**
+
+| Component | Weight | Source Data |
+|-----------|--------|------------|
+| GREEN Node Rate | 30% | % of active users at GREEN status |
+| Sustained Match Rate | 25% | % of proposed matches still active at 90 days |
+| Adverse Event Rate | 20% | Confirmed harm events per 1,000 proposals |
+| Audit Trail Completeness | 15% | STP seal coverage across all events |
+| Cultural Parameter Coverage | 10% | % of active user cultures with validated parameter sets |
+
+**Quarterly RDS report delivered to:**
+- NICE / government partners
+- Independent oversight board
+- Published summary (no PII, aggregate only)
+
+---
+
+### B3 — Cultural Database
+
+**Phase 1 seed data — pre-loaded at launch:**
+
+| Dataset | Content | Source |
+|---------|---------|--------|
+| Hofstede Country Scores | Power distance, individualism, masculinity, uncertainty avoidance, long-term orientation, indulgence — 93 countries | Hofstede Insights (public) |
+| GLOBE Study Data | 62-country leadership and cultural values data (relationship-relevant dimensions extracted) | GLOBE Project (academic) |
+| Marriage Rate Trends | Country-level marriage and cohabitation rates 2000–2024 | UN Demographic Yearbook |
+| Courtship Tradition Profiles | Qualitative cultural profiles for 40+ countries | Ethnographic literature synthesis |
+| Dating App Outcome Data | Aggregate published research on app-mediated relationship outcomes by region | Academic meta-analyses |
+
+**Crowdsourced contribution system:**
+
+Users can submit:
+- Cultural context notes ("In my culture, directness in the first meeting is considered disrespectful — this is not avoidance, it is protocol")
+- Tradition descriptions ("In Korean dating culture, age-gap norms carry specific expectations — here is how they work")
+- Outcome reports (opt-in, anonymous) — "We matched 8 months ago. Here is how we would describe our compatibility pattern."
+
+All contributions reviewed before database integration. Contributors anonymous but tracked for quality scoring.
+
+---
+
+### B4 — Training Data Pipeline
+
+**Free data strategy — bootstrapping the engine before proprietary data exists:**
+
+| Dataset | Relevance | Acquisition |
+|---------|-----------|-------------|
+| Big Five Personality Inventory (BFI-44) | Core personality dimensions — communication, values, openness | Public domain |
+| ECR-R (Experiences in Close Relationships — Revised) | Attachment style measurement | Academic — free for research |
+| Gottman Marriage Research corpus | Interaction pattern research, positive/negative ratios, repair strategies | Licensed academic access |
+| MBTI published behavioral taxonomy | Communication style markers, cognitive function patterns | Public literature synthesis |
+| Dyadic Adjustment Scale (DAS) | Relationship satisfaction measurement — ground truth for outcomes | Academic — free for research |
+| OkCupid public dataset (2016, anonymized) | Large-scale real-world matching data with outcome signals | Public release |
+| Stanford Social Science One dataset | Relationship outcome data | Research access |
+
+**Pipeline architecture:**
+```
+Free datasets (labeled)
+      ↓
+Feature extraction → Behavioral taxonomy labels
+      ↓
+Engine pre-training (behavioral classification layer)
+      ↓
+Validation against instrument ground truth
+      ↓
+Phase 2: User conversation data (consented, anonymized) supplements
+      ↓
+Continuous retraining pipeline (versioned, STP-logged)
+```
+
+---
+
+### B5 — Matching Network
+
+**Zero-knowledge design principle:** No central server ever holds both Pattern Files in a match simultaneously.
+
+**Matching protocol:**
+```
+User A uploads sealed Pattern File → Matching Server
+User B uploads sealed Pattern File → Matching Server
+
+Server holds File A and File B for maximum 24 hours during matching computation.
+
+Probabilistic Band Calculator runs → output is P-band record only.
+
+Both Pattern Files deleted from server immediately post-computation.
+Only the P-band output record retained (no PII, no raw pattern data).
+
+P-band output → Match Proposal → both users.
+
+Users make independent decisions.
+Server retains only: anonymized match decision outcome (for RDS).
+```
+
+**What the matching server never retains:**
+- Raw Pattern Files
+- Conversation data
+- Personal identifiers
+- Contact information
+- The full Pattern File content of any user
+
+---
+
+### B6 — Offline Sync Protocol
+
+**The app works fully offline. This is not a feature — it is a constitutional requirement.**
+
+**What works offline (everything the user owns):**
+- Full Companion AI conversation
+- Pattern File generation and viewing
+- Stage Delta computation
+- Mirror Protocol sessions
+- AI Floppy configuration and operation
+
+**What requires connection:**
+- Match network upload (upload sealed Pattern File)
+- Match Proposal receipt
+- Cultural database updates
+- Training pipeline updates
+
+**Sync protocol:**
+```
+Device comes online
+      ↓
+Check for pending sync items (queued exports, cultural DB updates)
+      ↓
+Encrypted upload only — no download of user data to server
+      ↓
+Cultural DB delta sync (new cultural contributions since last sync)
+      ↓
+Training model updates (if user opted into model improvement program)
+      ↓
+Disconnect — device returns to offline-capable state
+```
+
+---
+
+## 📐 Data Architecture
+
+### Pattern File v3.1 Schema
+
+```json
+{
+  "pattern_file": {
+    "schema_version": "3.1",
+    "pattern_id": "hm-{uuid}",
+    "generated_by": "HEART-MESH Personality AI v3.1",
+    "stage": 3,
+    "stage_date": "ISO-8601",
+    "stp_seal": "SHA256:{seal_hash}",
+    "mesh_node_status": "GREEN",
+    "overall_confidence": 0.82,
+    "session_count": 147,
+    "observation_window_days": 365,
+    "user_approved": true,
+    "user_approval_date": "ISO-8601",
+    "behavioral_sample_declaration": "This file represents observed behavioral patterns during 147 conversation sessions between [start_date] and [end_date]. It is a time-stamped sample, not an identity.",
+    "dimensions": {
+      "communication": {
+        "directness": {"score": 0.72, "confidence": 0.88, "ecf_tag": "[D]"},
+        "emotional_expression": {"score": 0.61, "confidence": 0.79, "ecf_tag": "[R]"},
+        "conflict_style": {"value": "collaborative", "confidence": 0.83, "ecf_tag": "[D]"},
+        "humor_type": {"value": "dry_warm", "confidence": 0.71, "ecf_tag": "[R]"}
+      },
+      "attachment": {
+        "primary_style": {"value": "secure", "confidence": 0.84, "instrument": "ECR-R", "ecf_tag": "[D]"},
+        "secondary_tendency": {"value": "anxious_low", "confidence": 0.61, "ecf_tag": "[R]"}
+      },
+      "values": {
+        "hierarchy": ["connection", "growth", "achievement", "stability"],
+        "confidence": 0.77,
+        "ecf_tag": "[R]"
+      },
+      "lifestyle": {
+        "social_energy": {"score": 0.38, "label": "introvert_leaning", "confidence": 0.80, "ecf_tag": "[D]"},
+        "daily_rhythm": {"value": "night", "confidence": 0.91, "ecf_tag": "[D]"},
+        "risk_tolerance": {"score": 0.55, "confidence": 0.62, "ecf_tag": "[R]"}
+      },
+      "relationship": {
+        "goal": {"value": "long_term", "ecf_tag": "[S]"},
+        "commitment_readiness": {"score": 0.74, "confidence": 0.69, "ecf_tag": "[R]"}
+      }
+    },
+    "low_confidence_dimensions": ["risk_tolerance", "growth_orientation"],
+    "insufficient_data_dimensions": [],
+    "deal_breakers": ["dishonesty", "manipulation"],
+    "cultural_context": {
+      "primary_culture": "US",
+      "cultural_parameter_version": "US_base_v2.1"
+    },
+    "NO_PII": true
+  }
+}
+```
+
+---
+
+### Stage Delta Record Schema
+
+```json
+{
+  "stage_delta": {
+    "from_stage": 1,
+    "to_stage": 2,
+    "computation_date": "ISO-8601",
+    "stp_seal": "SHA256:{seal_hash}",
+    "dimension_deltas": [
+      {
+        "dimension": "communication.directness",
+        "stage_1": 0.41,
+        "stage_2": 0.68,
+        "delta": 0.27,
+        "direction": "INCREASING",
+        "magnitude": "SIGNIFICANT",
+        "interpretation": "Substantial increase in directness — user's communication becoming more assertive"
+      }
+    ],
+    "trajectory_summary": "User showing consistent evolution toward greater directness and emotional openness. Core values and attachment style stable. Positive trajectory.",
+    "matching_weight_note": "Stage 2 data weighted 30% in active matching calculations. High-delta dimensions flagged in match proposal."
+  }
+}
+```
+
+---
+
+### Probability Band Output Schema
+
+```json
+{
+  "probability_band": {
+    "computation_id": "pb-{uuid}",
+    "computation_date": "ISO-8601",
+    "stp_seal": "SHA256:{seal_hash}",
+    "node_a_stage": 3,
+    "node_b_stage": 3,
+    "point_estimate": 0.71,
+    "confidence_interval": {
+      "lower": 0.58,
+      "upper": 0.83
+    },
+    "base_rate": 0.39,
+    "signal_lift": 0.32,
+    "signal_category": "STRONG",
+    "routing_decision": "PROPOSE",
+    "cultural_parameters_applied": ["US_base_v2.1", "JP_base_v1.2"],
+    "top_alignment_dimensions": ["communication.conflict_style", "values.hierarchy", "attachment.primary_style"],
+    "notable_divergence_dimensions": ["lifestyle.social_energy", "lifestyle.daily_rhythm"],
+    "divergence_interpretation": "Social energy and daily rhythm divergence — potentially complementary but should be surfaced in proposal",
+    "interaction_gap_declaration": "This score reflects pattern overlap between individual profiles. It cannot account for the interaction dynamics that will emerge when these two people actually engage. It is signal, not guarantee."
+  }
+}
+```
+
+---
+
+### Cultural Parameter Block Schema
+
+```json
+{
+  "cultural_parameter_block": {
+    "culture_code": "JP",
+    "parameter_version": "JP_base_v1.2",
+    "last_updated": "ISO-8601",
+    "source": "Hofstede_JP + GLOBE_JP + community_contributions_v3",
+    "contribution_count": 47,
+    "parameters": {
+      "communication_context": "high_context",
+      "directness_norm": 0.35,
+      "emotional_expression_norm": 0.42,
+      "silence_tolerance": 0.78,
+      "conflict_expression_style": "indirect",
+      "family_involvement_weight": 0.82,
+      "age_role_sensitivity": 0.71,
+      "gender_role_flexibility": 0.55,
+      "first_meeting_formality": 0.79,
+      "gift_giving_significance": 0.68
+    },
+    "complementarity_adjustments": {
+      "directness_differential_tolerance": 0.25,
+      "emotional_expression_complementarity": "high_benefits_measured"
+    },
+    "community_notes": "High-context communication norm means directness scoring requires downward adjustment for JP profiles. Silence in conversation is not withdrawal — it is processing."
+  }
+}
+```
+
+---
+
+## 🔌 API Surface
+
+| Endpoint | Method | Auth | Description |
+|----------|--------|------|-------------|
+| `/v1/node/session` | POST | Device key | Submit conversation session for pattern analysis |
+| `/v1/node/status` | GET | Device key | Query node status + confidence score |
+| `/v1/pattern/generate` | POST | Device key | Generate and STP-seal Pattern File for current stage |
+| `/v1/pattern/delta` | POST | Device key | Compute Stage Delta between two sealed Pattern Files |
+| `/v1/pattern/export` | POST | Device key + user confirm | Export sealed Pattern File for matching upload |
+| `/v1/match/upload` | POST | User token | Upload sealed Pattern File to matching network |
+| `/v1/match/preference` | POST | User token | Submit Partner Preference Declaration |
+| `/v1/match/cultural` | POST | User token | Submit Cultural Context input |
+| `/v1/match/proposals` | GET | User token | Retrieve active match proposals with P-band outputs |
+| `/v1/match/decision` | POST | User token | Submit Connect / Pass decision on proposal |
+| `/v1/match/hold` | GET | User token | Query MATCH HOLD status and queue position |
+| `/v1/rds/report` | GET | Partner token | Retrieve population RDS metrics (partners only) |
+| `/v1/stp/seal` | POST | Device key | Cryptographically seal any event record |
+| `/v1/stp/verify` | GET | Public | Verify STP seal integrity |
+| `/v1/mirror/session` | POST | Device key + consent flag | Submit Mirror Protocol session |
+| `/v1/nudge/status` | GET | Device key | Query Connection Nudge engagement metrics |
+| `/v1/cultural/contribute` | POST | User token | Submit cultural context contribution |
+| `/v1/floppy/config` | POST | Device key + Adv. tier | Submit AI Floppy configuration |
+| `/v1/floppy/divergence` | GET | Device key + Adv. tier | Retrieve stated vs. revealed preference divergence |
+
+---
+
+## 🔐 Security & Sovereignty Model
+
+**Data residency principles:**
+
+| Data Type | Primary Location | Server Access | Retention |
+|-----------|-----------------|---------------|-----------|
+| Conversation history | Device only | Never | User-controlled |
+| Pattern File (raw) | Device only | Temporary (matching only) | User-controlled |
+| Stage Delta records | Device only | Never | User-controlled |
+| Mirror Protocol sessions | Device only | Never | User-controlled |
+| STP seals | Device (primary), server (event log) | Hash only | Permanent |
+| P-band output | Server (30 days) | Yes — no PII | 30 days then purge |
+| Match decisions | Server (anonymized) | Anonymized only | Aggregate for RDS |
+| Cultural contributions | Server (anonymized) | Yes | Permanent (anonymous) |
+
+**Encryption:**
+- All local storage: AES-256 at rest
+- All transmission: TLS 1.3 minimum
+- Pattern File export: Encrypted + signed before upload
+- Matching computation: Zero-knowledge protocol where computationally feasible
+
+**What HEART-MESH will never do:**
+- Sell Pattern File data to third parties
+- Use conversation history for advertising targeting
+- Share individual behavioral profiles with governments
+- Retain Pattern Files on servers after matching computation completes
+- Apply RDS scoring to individual users
+- Override user deal-breakers
+
+---
+
+## 📚 Free Data Strategy
+
+The engine bootstraps on freely available, validated research before any proprietary data exists.
+
+**Training corpus (Phase 1):**
+
+| Dataset | Behavioral Signal | Access |
+|---------|-----------------|--------|
+| Big Five (BFI-44, IPIP-NEO) | Personality dimensions — openness, conscientiousness, extraversion, agreeableness, neuroticism | Public domain |
+| ECR-R | Attachment anxiety and avoidance dimensions | Free for research use |
+| Gottman Institute published research | Positive/negative interaction ratios, repair strategy taxonomy, conflict style categories | Academic publication access |
+| MBTI behavioral literature | Communication and cognitive style taxonomy (used as input features, not output labels) | Public literature |
+| Dyadic Adjustment Scale (DAS-7) | Relationship satisfaction measurement — ground truth for outcome validation | Free for research |
+| Cross-cultural relationship meta-analyses | Cultural variation in compatibility predictors | Academic access |
+| OkCupid 2016 anonymized public dataset | Real-world match + outcome signals at scale | Public release |
+
+**Transition to proprietary data (Phase 2+):**
+User conversation data (consented, anonymized) begins supplementing the training corpus. The engine learns from real HEART-MESH interactions, which improves the extraction pipeline specifically for the conversational context of the platform.
+
+---
+
+## 🕳️ The Interaction Pattern Gap — Declared
+
+*This section appears in the spec because it must. It is not a limitation to be engineered around. It is a truth to be declared.*
+
+Gottman's foundational research identified that the most reliable predictor of relationship success is the interaction pattern between two specific people — specifically, the ratio of positive to negative interactions in their shared context. This is not a property of either individual. It is an emergent property of the pair.
+
+HEART-MESH v3.1 cannot generate this signal pre-match. The engine assesses individuals and computes pattern overlap. What actually happens when two people interact is only observable after they interact.
+
+This is not a failure of the engine. It is the structural ceiling of any individual-assessment-based matching system.
+
+**What the engine does:** Reduces the probability of entering interactions that are structurally likely to produce poor outcomes.
+
+**What the engine cannot do:** Guarantee that two well-matched profiles will produce a good interaction. Cannot predict the emergent chemistry, timing sensitivity, or contextual variables that no profile can capture.
+
+**How this is handled in the product:**
+- The interaction gap declaration appears in the probability band output (see schema above)
+- The match proposal UI explicitly names it: *"This score reflects pattern overlap. What happens when you actually talk is the real test."*
+- Post-match feedback collection begins as soon as both users confirm contact — this interaction data is the most valuable data the platform will ever generate
+
+---
+
+## 🛠️ MVP Build Sequence
+
+**Build nothing before validating the extraction pipeline.**
+
+```
+PHASE 0 — VALIDATION (Months 1–3)
+─────────────────────────────────────────
+Target: Prove the extraction pipeline produces pattern scores
+        that correlate with gold-standard instruments at r ≥ 0.50.
+
+Build:
+  • Personality AI Engine (M1) — minimal viable version
+  • Pattern Extraction Pipeline (M2) — core dimensions only
+  • Psychometric validation test harness
+
+Test:
+  • 50 volunteer users, 10+ sessions each
+  • Administer Big Five + ECR-R → compare to extracted Pattern File
+  • If r ≥ 0.50: proceed to Phase 1
+  • If r < 0.50: extraction pipeline requires fundamental revision
+
+Do NOT build:
+  • Matching network
+  • P-band calculator
+  • Any matching UI
+  • Cultural database (seed only)
+
+─────────────────────────────────────────
+PHASE 1 — MVP (Months 3–9)
+─────────────────────────────────────────
+Phase 0 gate passed.
+
+Build:
+  • Companion App (F1) — offline-first, full feature
+  • Pattern File Viewer (F2)
+  • Stage Delta Engine (M3)
+  • STP Sealing Service (B1) — local seals
+  • Cultural Database seed (B3) — Phase 1 data pre-loaded
+  • AI Floppy Studio (F4) — basic configuration
+
+Defer:
+  • Matching network (requires user base)
+  • Mirror Protocol (requires safety testing)
+  • RDS (requires match network)
+  • P-band calculator (requires cultural DB maturity)
+
+─────────────────────────────────────────
+PHASE 2 — PILOT (Months 9–18)
+─────────────────────────────────────────
+Build:
+  • Match Portal (F3)
+  • Probabilistic Band Calculator (M4)
+  • Cultural Parameterization Layer (M5) — active
+  • Match Router (M6)
+  • Matching Network (B5)
+  • Cultural crowdsource system (B3)
+
+Pilot: N = 100–500 users
+Collect: Ground truth outcome data (longevity, satisfaction)
+Validate: P-band signal lift against actual outcomes
+
+─────────────────────────────────────────
+PHASE 3 — NETWORK (Months 18–30)
+─────────────────────────────────────────
+Build:
+  • Mirror Protocol (F5 + M7) — safety-tested
+  • Connection Nudge Protocol (M8)
+  • RDS Engine (B2)
+  • NICE / Government partnership integration
+
+─────────────────────────────────────────
+PHASE 4 — SCALE (Year 3+)
+─────────────────────────────────────────
+  • National deployment
+  • Multi-language support
+  • Multi-cultural parameter expansion
+  • Academic partnership for outcomes publication
+  • International expansion
+```
 
 ---
 
 ## 🗺️ Implementation Roadmap
 
-### Phase 1: MVP — Months 1–9
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ PHASE 1 DELIVERABLES                                            │
-├─────────────────────────────────────────────────────────────────┤
-│ ☐ Personality AI Node — local runtime operational               │
-│ ☐ Pattern File generation + STP sealing live                    │
-│ ☐ Node status engine (RED/YELLOW/GREEN) implemented             │
-│ ☐ Psychometric validation: r ≥ 0.50 against Big Five + ECR-R   │
-│ ☐ User sovereignty controls — review, modify, delete            │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Phase 2: Pilot — Months 9–18
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ PHASE 2 DELIVERABLES                                            │
-├─────────────────────────────────────────────────────────────────┤
-│ ☐ Pilot deployment (N = 100–500 users)                          │
-│ ☐ Ground truth metrics collected (longevity, satisfaction)      │
-│ ☐ CDI scoring refined against outcome data                      │
-│ ☐ RDS baseline report generated                                 │
-│ ☐ Bias audit conducted and published                            │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Phase 3: Network — Months 18–24
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ PHASE 3 DELIVERABLES                                            │
-├─────────────────────────────────────────────────────────────────┤
-│ ☐ HEART-MESH Match Router live                                  │
-│ ☐ NICE deployment (2–3 pilot cities)                            │
-│ ☐ Mirror Protocol — controlled safety testing complete          │
-│ ☐ MYCELIUM shared backbone integration formalized               │
-│ ☐ First quarterly RDS report published                          │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Phase 4: Scale — Year 2–3
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ PHASE 4 DELIVERABLES                                            │
-├─────────────────────────────────────────────────────────────────┤
-│ ☐ National deployment in NICE member countries                  │
-│ ☐ Government partnership agreements signed                      │
-│ ☐ Annual outcomes data published                                │
-│ ☐ RDS reported to national health/demographic bodies            │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-### Phase 5: Global — Year 3+
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ PHASE 5 DELIVERABLES                                            │
-├─────────────────────────────────────────────────────────────────┤
-│ ☐ Multi-country launch                                          │
-│ ☐ Multi-language, multi-cultural calibration                    │
-│ ☐ HEART-MESH Certified Compatibility standard established       │
-│ ☐ International peer-reviewed outcomes publication              │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🏷️ ECF-Tagged Claims Register
-
-| Claim | Tag | Validation Path |
-|-------|-----|----------------|
-| Loneliness is a global epidemic with measurable health impacts | [D] | WHO, Surgeon General, national statistics — cited in §2 |
-| Dating apps optimize for engagement, not outcomes | [R] | Business model analysis. Published retention metrics. |
-| Pattern-to-pattern matching predicts compatibility better than photo-swiping | [R] | Logically grounded. Awaiting Phase 2 empirical validation. |
-| Personality AI can extract patterns correlating with psychometrics at r > 0.50 | [S] | MVP target — untested. Phase 1 gates on this result. |
-| FSVE-scored CDI ≥ 0.70 predicts relationship satisfaction > DAS-7 threshold | [?] | Requires Phase 2 validation. Deployment gated. |
-| Mirror Protocol can produce behavioral insight without triggering narcissistic rage | [S] | Safety protocol designed. Phase 3 controlled testing required. |
-| HEART-MESH will reduce demographic decline in partner countries | [S] | Long-term outcome. Multi-year longitudinal data required. |
-| MYCELIUM backbone is directly applicable to compatibility matching | [R] | Architectural analysis. Node trust, STP, routing all domain-agnostic. |
-| RDS can serve as a population-level relational health metric for policymakers | [S] | Metric designed. Validation in Phase 2–3. |
-
----
-
-## 🔒 Intellectual Property
-
-### Ownership Statement
-
-All frameworks, engines, and architectural components are original intellectual property of **Sheldon K. Salmon (AionSystem)**.
-
-| Registration | Identifier |
-|--------------|------------|
-| ORCID | [0009-0005-8057-5115](https://orcid.org/0009-0005-8057-5115) |
-| Zenodo DOI (this repository) | [10.5281/zenodo.19712633](https://doi.org/10.5281/zenodo.19712633) |
-| MYCELIUM v2.0 | [10.5281/zenodo.19688042](https://doi.org/10.5281/zenodo.19688042) |
-| AION Constitutional Stack | [10.5281/zenodo.18941392](https://doi.org/10.5281/zenodo.18941392) |
-| CERTUS Engine v2.5.3 | [10.5281/zenodo.19373724](https://doi.org/10.5281/zenodo.19373724) |
-| FSVE v4.0 | AION-BRAIN/FSVE |
-| STP | github.com/AionSystem/STP |
-| FORGE v1.0 | AION-BRAIN / March 2026 |
-
-**Complete unencumbered ownership.** No corporate co-ownership. No institutional affiliation claims. No licensing encumbrances.
-
-### IP Generated in HEART-MESH v3.0
-
-| Component | Description |
-|-----------|-------------|
-| Personality AI Node Protocol | Sovereign local-first personality assessment and pattern generation |
-| Pattern File Specification v3.0 | JSON schema for machine-readable personality architecture |
-| HEART-MESH Match Router | Pattern-aware routing with MATCH HOLD protocol |
-| Relational Debt Score (RDS) | Population-level relational health metric methodology |
-| CDI Scoring Methodology | FSVE-adapted compatibility depth index for romantic matching |
-| Connection Nudge Protocol | Circuit-breaker architecture for AI dependency prevention |
-
----
-
-## 📜 License
-
-**Sovereign IP Reserved.**
-
-This repository constitutes registered intellectual property of Sheldon K. Salmon (AionSystem).
-
-| Field | Value |
-|-------|-------|
-| DOI Registered | 10.5281/zenodo.19712633 |
-| ORCID | 0009-0005-8057-5115 |
-| Ownership | Complete — unencumbered |
-| Institutional Claims | None |
-| Corporate Co-ownership | None |
-
-See [LICENSE](./LICENSE) for complete terms.
-
----
-
-## 🙏 Acknowledgments
-
-This architecture builds upon the theoretical and infrastructure foundations of:
-
-- **MYCELIUM v2.0** — Distributed AI Verification Mesh (the backbone)
-- **FSVE v4.0** — Foundational Scoring and Validation Engine (EV 0.813, M-STRONG)
-- **FORGE v1.0** — Framework for Orchestrated Refinement under Governed Epistemics
-- **STP v1.0** — Sovereign Trace Protocol (cryptographic sealing infrastructure)
-- **HEART-MESH v2.0** — Predecessor concept (all v2.0 FORGE findings resolved and carried forward)
-- **CSCA v0.1** — Cognitive Substrate Cryptographic Assumption
-
-Psychometric foundations: Experiences in Close Relationships–Revised (ECR-R, Fraley et al.), Big Five Inventory (John & Srivastava), Dyadic Adjustment Scale (Spanier). Attachment theory: Bowlby (1969), Ainsworth (1978).
-
-The postal analogy carried forward from MYCELIUM: Every pattern verified. Every match sealed. No unverified connection ever exits the mesh without human consent.
-
----
-
-## 📞 Contact
-
-**Sheldon K. Salmon**
-
-| Channel | Address |
-|---------|---------|
-| ORCID | [0009-0005-8057-5115](https://orcid.org/0009-0005-8057-5115) |
-| GitHub | [@AionSystem](https://github.com/AionSystem) |
-| Zenodo | [AionSystem Community](https://zenodo.org/communities/aionsystem) |
-| Foresight Institute | Computation Group & Health Extension Group |
+| Phase | Timeline | Key Milestone | Gate Criterion |
+|-------|---------|--------------|----------------|
+| Phase 0 — Validation | Months 1–3 | Extraction pipeline validated | r ≥ 0.50 vs. gold-standard instruments |
+| Phase 1 — MVP | Months 3–9 | Companion App live, Stage seals working | 100+ users with Stage 1 seals |
+| Phase 2 — Pilot | Months 9–18 | Matching network live, P-band active | Signal lift > +0.10 above base rate confirmed |
+| Phase 3 — Network | Months 18–30 | Mirror Protocol live, RDS reporting, NICE integration | Phase 2 outcome data published |
+| Phase 4 — Scale | Year 3+ | National deployment | Phase 3 adverse event rate < 2% |
 
 ---
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-HEART-MESH v3.0 — The Mesh That Connects
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-FORGE v1.0 INFORMED  |  MYCELIUM v2.0 BACKBONE  |  FSVE v4.0 SCORING
-STP v1.0 SEALED  |  RDS POPULATION METRIC  |  ORCID: 0009-0005-8057-5115
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-"Every pattern verified. Every match sealed. No unverified connection ever
-exits the mesh without human consent."
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HEART-MESH v3.1 — 「心网」— The Mesh That Connects
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DSAP v1.1 AUDITED | FORGE v1.0 INFORMED | MYCELIUM v2.0 BACKBONE
+FSVE v4.0 SCORING | STP v1.0 SEALED | ORCID: 0009-0005-8057-5115
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Every pattern verified. Every match sealed. The interaction is still yours."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Version: 3.1.0 | Date: April 2026 | Status: SPEC COMPLETE — BUILD READY
+Supersedes: HEART-MESH v3.0 | Authors: Sheldon K. Salmon & ALBEDO
 ```
-
----
-
-**Version:** 3.0.0
-**Date:** April 2026
-**Status:** CONCEPT COMPLETE — FORGE RE-AUDIT PENDING
-**Supersedes:** HEART-MESH v2.0 (April 23, 2026)
-**Authors:** Sheldon K. Salmon & ALBEDO
-**Next:** Phase 1 Personality AI Node — MVP Build
-
